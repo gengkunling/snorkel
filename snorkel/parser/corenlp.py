@@ -253,8 +253,10 @@ class StanfordCoreNLPServer(Parser):
 
             # make char_offsets relative to start of sentence
             abs_sent_offset = parts['char_offsets'][0]
-            parts['char_offsets'] = [p - abs_sent_offset for p in parts['char_offsets']]
+            # ==============FIXED BY KUNLING==============
             parts['abs_char_offsets'] = [p for p in parts['char_offsets']]
+            parts['char_offsets'] = [p - abs_sent_offset for p in parts['char_offsets']]
+            # ==============FIXED BY KUNLING==============
             parts['dep_parents'] = sort_X_on_Y(dep_par, dep_order)
             parts['dep_labels'] = sort_X_on_Y(dep_lab, dep_order)
             parts['position'] = position
